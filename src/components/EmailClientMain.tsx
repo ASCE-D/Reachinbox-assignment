@@ -292,6 +292,24 @@ const EmailClientMain = () => {
   //  if (loading) return <div>Loading...</div>;
   //  if (error) return <div>Error: {error}</div>;
 
+  useEffect(() => {
+    const handleKeyPress = (event: any) => {
+      if (event.key === "d" || event.key === "D") {
+        setIsDeleteDialogOpen(true);
+      }
+      if (event.key === "r" || event.key === "R") {
+        setIsReplyModalOpen(true);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+
+    // Cleanup function to remove the event listener
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
+
   const EmailContent = () => (
     <div className="flex-1 text-white px-4 ">
       <div className="flex items-center mb-2">
