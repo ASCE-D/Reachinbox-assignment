@@ -18,28 +18,34 @@ export default function ReplyModal({ onClose }: { onClose: () => void }) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-end justify-center pb-6">
       <div
-        className="bg-[#141517] rounded-lg shadow-lg overflow-hidden flex flex-col"
+        className="bg-white dark:bg-[#141517] rounded-lg shadow-lg overflow-hidden flex flex-col"
         style={{ width: "720px", height: "500px" }}
       >
-        <div className="flex justify-between items-center pl-8 py-1 border-b bg-[#23272C] border-gray-700">
-          <h4 className="text-xl text-white font-semibold">Reply</h4>
+        <div className="flex justify-between items-center pl-8 py-1 border-b bg-popove bg-gray-300 dark:bg-[#141517] border-gray-50 dark:border-gray-700">
+          <h4 className="text-xl text-black dark:text-white font-semibold">
+            Reply
+          </h4>
           <Button variant="ghost" size="icon" onClick={onClose}>
             <X className="h-4 w-4" />
           </Button>
         </div>
         <div className="flex-grow flex flex-col">
           <div className="text-sm">
-            <div className="flex px-8 py-2 border-b border-gray-700">
+            <div className="flex px-8 py-2 border-b border-gray-400 dark:border-gray-700">
               <span className="w-8 text-gray-400">To:</span>
-              <span className="text-white">jeanne@icloud.com</span>
+              <span className="text-black dark:text-white">
+                jeanne@icloud.com
+              </span>
             </div>
-            <div className="flex px-8 py-2 border-b border-gray-700">
+            <div className="flex px-8 py-2 border-b border-gray-400 dark:border-gray-700">
               <span className="w-12  text-gray-400">From:</span>
-              <span className="text-white">peter@reachinbox.com</span>
+              <span className="text-black dark:text-white">
+                peter@reachinbox.com
+              </span>
             </div>
-            <div className="flex px-8 py-2 border-b border-gray-700">
+            <div className="flex px-8 py-2 border-b border-gray-400 dark:border-gray-700">
               <span className="w-16 text-gray-400">Subject:</span>
-              <span className="text-white">Warmup Welcome</span>
+              <span className="text-black dark:text-white">Warmup Welcome</span>
             </div>
           </div>
           <div className="flex-grow overflow-auto px-5 py-4">
@@ -50,7 +56,7 @@ export default function ReplyModal({ onClose }: { onClose: () => void }) {
             />
           </div>
         </div>
-        <div className="bottom-0 left-0 right-0 flex justify-between items-center p-4 bg-[#0F1015] border-t border-gray-700 rounded-b-lg">
+        <div className="bottom-0 left-0 right-0 flex justify-between items-center p-4 bg-white dark:bg-[#0F1015] border-t border-gray-400 dark:border-gray-700 rounded-b-lg">
           <div className="flex space-x-2">
             <div className="flex items-center justify-center">
               {" "}

@@ -30,7 +30,7 @@ const Sidebar = () => {
               <Image
                 src={
                   resolvedTheme === "dark"
-                    ? "https://app.reachinbox.ai/assets/logo.svg"
+                    ? "/logo-dark.svg"
                     : "/logo-white.svg"
                 }
                 alt="REACHINBOX"
@@ -62,8 +62,8 @@ const Sidebar = () => {
           </div>
           <div className="p-2">
             <Button variant="ghost" className="w-full p-2">
-              <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
-                <span className="font-semibold text-sm">AS</span>
+              <div className="w-8 h-8 bg-green-900 text-white dark: rounded-full flex items-center justify-center">
+                <span className="font-medium text-sm">AS</span>
               </div>
               <span className="sr-only">User profile</span>
             </Button>

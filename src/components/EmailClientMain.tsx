@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Mail,
@@ -34,19 +34,6 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
-const MeetingCompletedIcon = () => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 20 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="mr-2"
-  >
-    <circle cx="10" cy="10" r="10" fill="#444234" />
-    <rect x="4" y="4" width="12" height="12" rx="6" fill="#E6D162" />
-  </svg>
-);
 
 const MarkAsUnreadIcon = () => (
   <svg
@@ -64,120 +51,17 @@ const MarkAsUnreadIcon = () => (
   </svg>
 );
 
-const mails = [
-  {
-    email: "Beata@gmail.com",
-    message: "I've tried a lot and .",
-    status: "Interested",
-    campaign: "Campaign Name",
-    date: "Mar 7",
-  },
-  {
-    email: "Sanya@gmail.com",
-    status: "Closed",
-    campaign: "Campaign Name",
-    date: "Mar 7",
-    message: "I've tried a lot and .",
-  },
-  {
-    email: "william@gmail.com",
-    status: "Interested",
-    campaign: "Campaign Name",
-    message: "Payment not going through",
-    date: "Mar 7",
-  },
-  {
-    email: "johnson@gmail.com",
-    status: "Meeting Booked",
-    campaign: "Campaign Name",
-    date: "Mar 7",
-    message: "Could you tell me more about it",
-  },
-  {
-    email: "orlando@gmail.com",
-    status: "Meeting Completed",
-    campaign: "Campaign Name",
-    date: "18:30",
-    message: "Hi, I am interested",
-  },
-];
-
-const EmailContent = () => (
-  <div className="flex-1 text-white px-4 py-1 ">
-    <div className="flex items-center mb-2">
-      <div className="border-t-2 border-[#77777]  flex-grow"></div>
-      <div className="border border-[#EEF1F4] dark:border-[#141517] text-[#637381] dark:text-white text-sm px-3 py-1 rounded-md">
-        Today
-      </div>
-      <div className="border-t-2 border-[#77777]  flex-grow"></div>
-    </div>
-
-    <div className="bg-[#141517] rounded-lg p-4 mb-4 h-60">
-      <div className="flex justify-between items-start mb-2">
-        <h3 className="text-md font-semibold text-[#F8FAFC]">
-          New Product Launch
-        </h3>
-        <span className="text-sm text-[#AEAEAE]">20 June 2022 · 9:16AM</span>
-      </div>
-      <p className="text-sm text-[#AEAEAE] mb-4">
-        from : jeanne@icloud.com cc : lennon.j@mail.com
-        <br />
-        to : lennon.j@mail.com
-      </p>
-      <p className="text-sm mb-2 text-[#E1E0E0]">Hi {"{FIRST_NAME}"},</p>
-      <p className="text-sm mb-4 text-[#E1E0E0] py-6 pr-56">
-        I would like to introduce you to SaaSgrow, a productized design service
-        specifically tailored for saas startups. Our aim is to help you enhance
-        the user experience and boost the visual appeal of your software
-        products.
-      </p>
-    </div>
-
-    <div className="flex items-center mb-4">
-      <div className="border-t-2 border-[#77777] flex-grow"></div>
-      <Button
-        variant="ghost"
-        size="sm"
-        className="border border-[#EEF1F4] dark:border-[#141517] text-[#637381] dark:text-white py-2 flex items-center justify-center h-8"
-      >
-        <svg
-          width="19"
-          height="16"
-          viewBox="0 0 19 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect
-            width="17.6"
-            height="16"
-            transform="translate(0.760254)"
-            fill="#171819"
-          />
-          <path d="M14.3603 12.8H4.76025V14H14.3603V12.8Z" fill="#AEAEAE" />
-          <path d="M14.3603 2H4.76025V3.2H14.3603V2Z" fill="#AEAEAE" />
-          <path
-            d="M8.00625 8.954L7.16025 9.8L9.56025 12.2L11.9603 9.8L11.1143 8.954L10.1603 9.902V6.098L11.1143 7.046L11.9603 6.2L9.56025 3.8L7.16025 6.2L8.00625 7.046L8.96025 6.098V9.902L8.00625 8.954Z"
-            fill="#AEAEAE"
-          />
-        </svg>
-        View all replies
-      </Button>
-      <div className="border-t-2 border-[#77777] flex-grow"></div>
-    </div>
-  </div>
-);
-
 const LeadDetails = () => (
-  <div className="bg-background text-foreground mt-2">
+  <div className="mt-2">
     <div
       className={cn(
-        "flex items-center p-2 gap-4 w-full h-9 bg-[#23272C] rounded-xl mb-8"
+        "flex items-center p-2 gap-4 w-full h-9 bg-[#ECEFF3] dark:bg-[#23272C] rounded-xl mb-8"
       )}
     >
       <div className={cn("flex px-3 items-center w-full h-full")}>
         <span
           className={cn(
-            "text-white font-inter font-semibold text-md leading-5"
+            "text-[#454F5B] dark:text-white font-inter font-semibold text-md leading-5"
           )}
         >
           Lead Details
@@ -186,64 +70,100 @@ const LeadDetails = () => (
     </div>
     <div className="px-4 space-y-4">
       <div className="flex justify-between text-sm">
-        <span className="text-sm text-muted-foreground">Name</span>
-        <span className="text-sm">Orlando</span>
+        <span className="text-sm text-muted-foreground dark:text-white">
+          Name
+        </span>
+        <span className="text-sm text-black dark:text-muted-foreground">
+          Orlando
+        </span>
       </div>
       <div className="flex justify-between text-sm">
-        <span className=" text-muted-foreground">Contact No</span>
-        <span className=" ">+54-9062827869</span>
+        <span className=" text-muted-foreground dark:text-white">
+          Contact No
+        </span>
+        <span className="text-black dark:text-muted-foreground">
+          +54-9062827869
+        </span>
       </div>
       <div className="flex justify-between text-sm">
-        <span className="text-sm text-muted-foreground">Email ID</span>
-        <span className="text-sm">orlando@gmail.com</span>
+        <span className="text-sm text-muted-foreground dark:text-white">
+          Email ID
+        </span>
+        <span className="text-sm text-black dark:text-muted-foreground">
+          orlando@gmail.com
+        </span>
       </div>
       <div className="flex justify-between text-sm">
-        <span className="text-sm text-muted-foreground">LinkedIn</span>
-        <p className="text-sm">
+        <span className="text-sm text-muted-foreground dark:text-white">
+          LinkedIn
+        </span>
+        <p className="text-sm text-black dark:text-muted-foreground">
           linkedin.com/in/ <br />
           timvadde/
         </p>
       </div>
       <div className="flex justify-between text-sm">
-        <span className="text-sm text-muted-foreground">Company Name</span>
-        <span className="text-sm">Reachinbox</span>
+        <span className="text-sm text-muted-foreground dark:text-white">
+          Company Name
+        </span>
+        <span className="text-sm text-black dark:text-muted-foreground">
+          Reachinbox
+        </span>
       </div>
     </div>
   </div>
 );
 
 const Activities = () => (
-  <div className=" text-white  rounded-lg overflow-hidden mt-4">
-    <div className="flex items-center p-4 gap-4 w-full h-9 bg-[#23272C] rounded-xl mb-8">
-      <span className="text-white font-inter font-semibold text-md leading-5">
+  <div className=" text-[#454F5B] dark:text-white  rounded-lg overflow-hidden mt-4">
+    <div className="flex items-center p-4 gap-4 w-full h-9 bg-[#ECEFF3] dark:bg-[#23272C] rounded-xl mb-8">
+      <span className="text-[#454F5B] dark:text-white font-inter font-semibold text-md leading-5">
         Activities
       </span>
     </div>
     <div className="px-4 pb-4">
-      <h4 className="font-semibold text-lg mb-1">Campaign Name</h4>
-      <div className="flex text-xs text-white mb-6">
-        <span>3 Steps</span>
-        <span className="mx-2">|</span>
-        <span>5 Days in Sequence</span>
+      <h4 className="font-medium text-lg mb-1 text-[#172B4D] dark:text-white">
+        Campaign Name
+      </h4>
+      <div className="flex text-sm text-[#454F5B] dark:text-white mb-6">
+        <div className="flex">
+          {" "}
+          <span className="px-1 text-[#454F5B] dark:text-white font-semibold">
+            3
+          </span>
+          Steps
+        </div>
+        <div className="border border-[#DFE3E8] mx-2"></div>
+        <div className="flex">
+          <span className="pr-1 text-[#454F5B] dark:text-white font-semibold">
+            5{" "}
+          </span>
+          Days in Sequence
+        </div>
       </div>
       <div className="space-y-6 relative">
-        <div className="absolute left-[13px] top-[24px] bottom-0 w-[1px] bg-[#41464B]"></div>
+        {/* <div className="absolute left-[13px] top-[24px] bottom-0 w-[1px] bg-[#41464B]"></div> */}
         {[
           { step: 1, status: "Sent", date: "3rd, Feb", icon: Send },
           { step: 2, status: "Opened", date: "5th, Feb", icon: Mail },
           { step: 3, status: "Opened", date: "5th, Feb", icon: Mail },
-        ].map((item, index) => (
-          <div key={index} className="flex items-start">
-            <div className="rounded-full bg-[#41464B] p-1.5 mr-4 z-10">
-              <Mail className="w-4 h-4 text-gray-300" />
+        ].map((item, index, array) => (
+          <div key={index} className="flex items-start relative">
+            {index < array.length - 1 && (
+              <div className="absolute left-[16.5px] top-9 w-[0.25px] bg-gray-300 h-8" />
+            )}
+            <div className="relative z-10 flex flex-col items-center">
+              <div className="rounded-full border-2 bg-[#EEF1F4] dark:bg-black border-[#DFE3E8] dark:border-[#41464B] p-1.5 mb-2">
+                <Mail className="w-5 h-5  text-[#637381] dark:text-gray-300 text-bold" />
+              </div>
             </div>
-            <div>
-              <p className="font-semibold text-sm mb-1">
+            <div className="ml-4">
+              <p className="font-semibold text-sm mb-1 text-[#172B4D] dark:text-white">
                 Step {item.step}: Email
               </p>
-              <p className="text-xs text-gray-400 flex items-center">
+              <div className="flex items-center space-x-1 text-xs">
                 {item.status === "Sent" ? (
-                  <Send className="w-3 h-3 mr-2" />
+                  <Send className="w-3 h-3" />
                 ) : (
                   <svg
                     width="14"
@@ -251,7 +171,6 @@ const Activities = () => (
                     viewBox="0 0 17 17"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="mr-2"
                   >
                     <path
                       d="M15.4336 6.96086C15.4336 6.48086 15.1869 6.06086 14.8069 5.82752L8.7736 2.29419L2.74027 5.82752C2.36027 6.06086 2.10693 6.48086 2.10693 6.96086V13.6275C2.10693 14.3609 2.70693 14.9609 3.44027 14.9609H14.1069C14.8403 14.9609 15.4403 14.3609 15.4403 13.6275L15.4336 6.96086ZM14.1003 6.96086V6.96752L8.7736 10.2942L3.44027 6.96086L8.7736 3.84086L14.1003 6.96086ZM3.44027 13.6275V8.52086L8.7736 11.8675L14.1003 8.54086L14.1069 13.6275H3.44027Z"
@@ -259,10 +178,13 @@ const Activities = () => (
                     />
                   </svg>
                 )}
-                <span>
-                  {item.status} {item.date}
+                <span className="text-[#637381] dark:text-[#B9B9B9]">
+                  {item.status}
                 </span>
-              </p>
+                <span className="text-[#637381] dark:text-[#B9B9B9] font-semibold">
+                  {item.date}
+                </span>
+              </div>
             </div>
           </div>
         ))}
@@ -274,6 +196,235 @@ const Activities = () => (
 const EmailClientMain = () => {
   const [isReplyModalOpen, setIsReplyModalOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  // const [mails, setMails] = useState<any>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<null | string>(null);
+
+  const mails = [
+    {
+      email: "Beata@gmail.com",
+      message: "I've tried a lot and .",
+      status: "Interested",
+      campaign: "Campaign Name",
+      date: "Mar 7",
+    },
+    {
+      email: "Sanya@gmail.com",
+      status: "Closed",
+      campaign: "Campaign Name",
+      date: "Mar 7",
+      message: "I've tried a lot and .",
+    },
+    {
+      email: "william@gmail.com",
+      status: "Interested",
+      campaign: "Campaign Name",
+      message: "Payment not going through",
+      date: "Mar 7",
+    },
+    {
+      email: "johnson@gmail.com",
+      status: "Meeting Booked",
+      campaign: "Campaign Name",
+      date: "Mar 7",
+      message: "Could you tell me more about it",
+    },
+    {
+      email: "orlando@gmail.com",
+      status: "Meeting Completed",
+      campaign: "Campaign Name",
+      date: "18:30",
+      message: "Hi, I am interested",
+    },
+  ];
+
+  //  useEffect(() => {
+  //    async function fetchMails() {
+  //      setLoading(true);
+  //      const result = await getAllMails();
+  //      if (result) {
+  //        setMails(result);
+  //        setError(null);
+  //      } else {
+  //        setError("Failed to fetch mails");
+  //      }
+  //      setLoading(false);
+  //    }
+
+  //    fetchMails();
+  //  }, []);
+
+  //  console.log(mails)
+
+  //   async function getAllMails() {
+  //     const token = localStorage.getItem("authToken");
+
+  //     if (!token) {
+  //       console.error("No auth token found");
+  //       return null;
+  //     }
+
+  //     try {
+  //       const response = await fetch(
+  //         "https://hiring.reachinbox.xyz/api/v1/onebox/list",
+  //         {
+  //           method: "GET",
+  //           headers: {
+  //             Authorization: `Bearer ${token}`,
+  //             "Content-Type": "application/json",
+  //           },
+  //         }
+  //       );
+
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! status: ${response.status}`);
+  //       }
+
+  //       const data = await response.json();
+  //       return data;
+  //     } catch (error) {
+  //       console.error("Error fetching mails:", error);
+  //       return null;
+  //     }
+  //   }
+
+
+  //  if (loading) return <div>Loading...</div>;
+  //  if (error) return <div>Error: {error}</div>;
+
+  const EmailContent = () => (
+    <div className="flex-1 text-white px-4 ">
+      <div className="flex items-center mb-2">
+        <div className="border-t-2 border-[#77777]  flex-grow"></div>
+        <div className="border border-[#EEF1F4] dark:border-none dark:bg-[#171819] text-[#637381] dark:text-white text-sm px-3 py-1 mt-1 rounded-md">
+          Today
+        </div>
+        <div className="border-t-2 border-[#77777]  flex-grow"></div>
+      </div>
+
+      {/* {content} */}
+
+      <div className="border bg-white dark:bg-[#141517] rounded-lg p-4 mb-2 h-[236px]">
+        <div className="flex justify-between items-start mb-2">
+          <h3 className="text-md font-semibold text-black dark:text-[#F8FAFC]">
+            New Product Launch
+          </h3>
+          <span className="text-sm text-[#637381]">20 June 2022 · 9:16AM</span>
+        </div>
+        <p className="text-sm text-[#637381] mb-4">
+          from : jeanne@icloud.com cc : lennon.j@mail.com
+          <br />
+          to : lennon.j@mail.com
+        </p>
+        <p className="text-sm mb-2 text-[#172B4D] dark:text-[#E1E0E0]">
+          Hi {"{FIRST_NAME}"},
+        </p>
+        <p className="text-sm mb-4 text-[#172B4D] dark:text-[#E1E0E0] py-6 pr-56">
+          I would like to introduce you to SaaSgrow, a productized design
+          service specifically tailored for saas startups. Our aim is to help
+          you enhance the user experience and boost the visual appeal of your
+          software products.
+        </p>
+      </div>
+
+      <div className="flex items-center mb-2">
+        <div className="border-t-2 border-[#77777] flex-grow"></div>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="border border-[#EEF1F4] dark:border-none dark:bg-[#171819] text-[#637381] dark:text-white py-2 flex items-center justify-center h-8"
+        >
+          <svg
+            width="19"
+            height="16"
+            viewBox="0 0 19 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M14.36 12.8H4.76001V14H14.36V12.8Z" fill="#454F5B" />
+            <path d="M14.36 2H4.76001V3.2H14.36V2Z" fill="#454F5B" />
+            <path
+              d="M8.00601 8.954L7.16001 9.8L9.56001 12.2L11.96 9.8L11.114 8.954L10.16 9.902V6.098L11.114 7.046L11.96 6.2L9.56001 3.8L7.16001 6.2L8.00601 7.046L8.96001 6.098V9.902L8.00601 8.954Z"
+              fill="currentColor"
+            />
+          </svg>
+          View all <span className="mx-1 text-[#5C7CFA]">4</span> replies
+        </Button>
+        <div className="border-t-2 border-[#77777] flex-grow"></div>
+      </div>
+
+      <div className="border bg-white dark:bg-[#141517] rounded-lg p-4 mb-4 h-[230px]">
+        <div className="flex justify-between items-start mb-2">
+          <h3 className="text-md font-semibold text-black dark:text-[#F8FAFC]">
+            New Product Launch
+          </h3>
+          <span className="text-sm text-[#637381]">20 June 2022 · 9:16AM</span>
+        </div>
+        <p className="text-sm text-[#637381] mb-4">
+          from : jeanne@icloud.com cc : lennon.j@mail.com
+          <br />
+          to : lennon.j@mail.com
+        </p>
+        <p className="text-sm mb-2 text-[#172B4D] dark:text-[#E1E0E0]">
+          Hi {"{FIRST_NAME}"},
+        </p>
+        <p className="text-sm mb-4 text-[#172B4D] dark:text-[#E1E0E0] py-3 pr-56">
+          I would like to introduce you to SaaSgrow, a productized design
+          service specifically tailored for saas startups. Our aim is to help
+          you enhance the user experience and boost the visual appeal of your
+          software products.
+        </p>
+      </div>
+            {/* <div className="border bg-white dark:bg-[#141517] rounded-lg p-4 mb-4 h-[230px]">
+        <div className="flex justify-between items-start mb-2">
+          <h3 className="text-md font-semibold text-black dark:text-[#F8FAFC]">
+            New Product Launch
+          </h3>
+          <span className="text-sm text-[#637381]">20 June 2022 · 9:16AM</span>
+        </div>
+        <p className="text-sm text-[#637381] mb-4">
+          from : jeanne@icloud.com cc : lennon.j@mail.com
+          <br />
+          to : lennon.j@mail.com
+        </p>
+        <p className="text-sm mb-2 text-[#172B4D] dark:text-[#E1E0E0]">
+          Hi {"{FIRST_NAME}"},
+        </p>
+        <p className="text-sm mb-4 text-[#172B4D] dark:text-[#E1E0E0] py-3 pr-56">
+          I would like to introduce you to SaaSgrow, a productized design
+          service specifically tailored for saas startups. Our aim is to help
+          you enhance the user experience and boost the visual appeal of your
+          software products.
+        </p>
+      </div> */}
+
+      <div className="absolute bottom-1">
+        {" "}
+        <Button
+          variant={"ghost"}
+          size={"lg"}
+          className=" w-40 bg-gradient-to-r from-[#4B63DD] to-[#0524BF] text-white hover:bg-primary/90"
+          onClick={() => setIsReplyModalOpen(true)}
+        >
+          <div className="flex items-center justify-center">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 8.5V4.5L3 11.5L10 18.5V14.4C15 14.4 18.5 16 21 19.5C20 14.5 17 9.5 10 8.5Z"
+                fill="#F7F7F7"
+              />
+            </svg>
+            <span className="mx-2">Reply</span>
+          </div>
+        </Button>
+      </div>
+    </div>
+  );
 
   const handleDeleteClick = (e: any) => {
     e.preventDefault();
@@ -427,7 +578,6 @@ const EmailClientMain = () => {
 
       {/* Email content */}
       <div className="flex-1 border-r border-border">
-        {/* White Background Section */}
         <div className="bg-white dark:bg-black px-4 py-2">
           <div className="flex justify-between items-center w-full">
             <div>
@@ -468,14 +618,6 @@ const EmailClientMain = () => {
                 Meeting Completed
                 <ChevronDown className="ml-4 h-4 w-4" />
               </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="border dark:bg-[#1F1F1F] dark:text-white px-3 flex items-center rounded-lg"
-              >
-                Move
-                <ChevronDown className="ml-2 h-4 w-4" />
-              </Button>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
@@ -483,7 +625,8 @@ const EmailClientMain = () => {
                     size="sm"
                     className="border dark:bg-[#1F1F1F] dark:text-white px-3 flex items-center rounded-lg"
                   >
-                    <MoreHorizontal className="h-5 w-5" />
+                    Move
+                    <ChevronDown className="ml-2 h-4 w-4" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56 bg-[#1F1F1F] text-white border-[#343A40] rounded-[0.5rem]">
@@ -512,6 +655,45 @@ const EmailClientMain = () => {
                     <Trash className="h-4 w-4" />
                     <span className="ml-2">Delete</span>
                   </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="border dark:bg-[#1F1F1F] dark:text-white px-3 flex items-center rounded-lg"
+                  >
+                    <MoreHorizontal className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56 bg-[#1F1F1F] text-white border-[#343A40] rounded-[0.5rem]">
+                  <DropdownMenuItem className="focus:bg-[#2F2F2F] focus:text-white flex">
+                    <MarkAsUnreadIcon />
+                    <span className="ml-2 items-center justify-center">
+                      Mark as unread
+                    </span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="focus:bg-[#2F2F2F] focus:text-white">
+                    <Pencil className="h-4 w-4" />
+                    <span className="ml-2">Edit lead</span>
+                  </DropdownMenuItem>
+                  {/* <DropdownMenuItem className="focus:bg-[#2F2F2F] focus:text-white">
+                    <UserMinus className="h-4 w-4" />
+                    <span className="ml-2">Remove lead</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="focus:bg-[#2F2F2F] focus:text-white">
+                    <Clock className="h-4 w-4" />
+                    <span className="ml-2">Set reminder</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    className="focus:bg-[#2F2F2F] focus:text-white"
+                    onSelect={handleDeleteClick}
+                  >
+                    <Trash className="h-4 w-4" />
+                    <span className="ml-2">Delete</span>
+                  </DropdownMenuItem> */}
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
@@ -550,35 +732,20 @@ const EmailClientMain = () => {
           </AlertDialog>
 
           <div className="border-t border-border -mx-4"></div>
-          <EmailContent />
-          <Button
-            variant={"ghost"}
-            size={"lg"}
-            className=" mt-28 ml-8 bg-gradient-to-r from-[#4B63DD] to-[#0524BF] text-white hover:bg-primary/90"
-            onClick={() => setIsReplyModalOpen(true)}
-          >
-            <div className="flex items-center">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className=" flex items-center"
-              >
-                <path
-                  d="M10 8.5V4.5L3 11.5L10 18.5V14.4C15 14.4 18.5 16 21 19.5C20 14.5 17 9.5 10 8.5Z"
-                  fill="#F7F7F7"
-                />
-              </svg>
-              <span className="mx-2">Reply</span>
+          <div className="flex flex-col h-screen">
+            {" "}
+            {/* Set height to full viewport */}
+            <div className="flex-grow overflow-y-auto">
+              {" "}
+              {/* Allow vertical scrolling */}
+              <EmailContent />
             </div>
-          </Button>
+          </div>
         </div>
       </div>
 
       {/* Lead details and activities */}
-      <div className="w-[278px] p-2 bg-background">
+      <div className="w-[278px] p-2 bg-white dark:bg-black">
         <LeadDetails />
         <Activities />
       </div>

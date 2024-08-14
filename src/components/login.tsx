@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,6 +7,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 const LoginSignupPage: React.FC = () => {
+  const handleGoogleSignUp = () => {
+    window.location.href =
+      "https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=https://frontend.com";
+  };
+
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-between p-8">
       <div className="w-full">
@@ -16,7 +23,6 @@ const LoginSignupPage: React.FC = () => {
           className="mx-auto mb-16"
         />
       </div>
-
       <Card className="w-full max-w-md bg-zinc-900 border-zinc-800 text-white shadow-lg">
         <CardHeader>
           <h2 className="text-xl font-normal text-center">
@@ -27,6 +33,7 @@ const LoginSignupPage: React.FC = () => {
           <Button
             variant="outline"
             className="w-full bg-transparent text-white border-zinc-700 hover:bg-zinc-800 font-normal flex items-center"
+            onClick={handleGoogleSignUp}
           >
             <Image
               src="/google-icon.svg"
@@ -37,13 +44,11 @@ const LoginSignupPage: React.FC = () => {
             />
             Sign Up with Google
           </Button>
-
           <div className="flex justify-center">
             <Button className="w-[195px] h-[48px] p-[13px] px-[35px] gap-[10px] bg-gradient-to-r from-[#4B63DD] to-[#0524BF] rounded-[4px] text-white font-semibold text-[14px] leading-[22px]">
               Create an Account
             </Button>
           </div>
-
           <p className="text-center text-sm text-zinc-400">
             Already have an account?{" "}
             <Link href="/signin" className="text-zinc-400 hover:underline">
@@ -52,7 +57,6 @@ const LoginSignupPage: React.FC = () => {
           </p>
         </CardContent>
       </Card>
-
       <footer className="w-full text-center text-zinc-600 text-xs mt-8">
         © 2023 Reachinbox. All rights reserved.
       </footer>
