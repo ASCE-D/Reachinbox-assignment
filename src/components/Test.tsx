@@ -9,7 +9,7 @@ import { useTheme } from "next-themes";
 // Placeholder component for workspace selector
 const WorkspaceSelector = () => (
   <div className="flex items-center justify-center cursor-pointer text-[#343A40] dark:text-white">
-    <span>Tim's Workspace</span>
+    <span>{"Tim's Workspace"}</span>
     <ChevronDown size={16} className="ml-2" />
   </div>
 );

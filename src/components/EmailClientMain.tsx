@@ -34,7 +34,6 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
-
 const MarkAsUnreadIcon = () => (
   <svg
     width="20"
@@ -238,56 +237,55 @@ const EmailClientMain = () => {
     },
   ];
 
-  //  useEffect(() => {
-  //    async function fetchMails() {
-  //      setLoading(true);
-  //      const result = await getAllMails();
-  //      if (result) {
-  //        setMails(result);
-  //        setError(null);
-  //      } else {
-  //        setError("Failed to fetch mails");
-  //      }
-  //      setLoading(false);
-  //    }
-
-  //    fetchMails();
-  //  }, []);
-
-  //  console.log(mails)
-
-  //   async function getAllMails() {
-  //     const token = localStorage.getItem("authToken");
-
-  //     if (!token) {
-  //       console.error("No auth token found");
-  //       return null;
+  // useEffect(() => {
+  //   async function fetchMails() {
+  //     setLoading(true);
+  //     const result = await getAllMails();
+  //     if (result) {
+  //       setMails(result);
+  //       setError(null);
+  //     } else {
+  //       setError("Failed to fetch mails");
   //     }
-
-  //     try {
-  //       const response = await fetch(
-  //         "https://hiring.reachinbox.xyz/api/v1/onebox/list",
-  //         {
-  //           method: "GET",
-  //           headers: {
-  //             Authorization: `Bearer ${token}`,
-  //             "Content-Type": "application/json",
-  //           },
-  //         }
-  //       );
-
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP error! status: ${response.status}`);
-  //       }
-
-  //       const data = await response.json();
-  //       return data;
-  //     } catch (error) {
-  //       console.error("Error fetching mails:", error);
-  //       return null;
-  //     }
+  //     setLoading(false);
   //   }
 
+  //   fetchMails();
+  // }, []);
+
+  // console.log(mails);
+
+  // async function getAllMails() {
+  //   const token = localStorage.getItem("authToken");
+
+  //   if (!token) {
+  //     console.error("No auth token found");
+  //     return null;
+  //   }
+
+  //   try {
+  //     const response = await fetch(
+  //       "https://hiring.reachinbox.xyz/api/v1/onebox/list",
+  //       {
+  //         method: "GET",
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+
+  //     if (!response.ok) {
+  //       throw new Error(`HTTP error! status: ${response.status}`);
+  //     }
+
+  //     const data = await response.json();
+  //     return data;
+  //   } catch (error) {
+  //     console.error("Error fetching mails:", error);
+  //     return null;
+  //   }
+  // }
 
   //  if (loading) return <div>Loading...</div>;
   //  if (error) return <div>Error: {error}</div>;
@@ -393,7 +391,7 @@ const EmailClientMain = () => {
           software products.
         </p>
       </div>
-            {/* <div className="border bg-white dark:bg-[#141517] rounded-lg p-4 mb-4 h-[230px]">
+      {/* <div className="border bg-white dark:bg-[#141517] rounded-lg p-4 mb-4 h-[230px]">
         <div className="flex justify-between items-start mb-2">
           <h3 className="text-md font-semibold text-black dark:text-[#F8FAFC]">
             New Product Launch
